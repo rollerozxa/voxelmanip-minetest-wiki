@@ -3,7 +3,9 @@
 		"twig/twig": "^3.0",
 		"mpratt/relativetime": "^1.5",
 		"erusev/parsedown": "9999999-dev",
-		"rollerozxa/php-diff": "dev-master"
+		"rollerozxa/php-diff": "dev-master",
+		"league/oauth2-client": "^2.7",
+		"league/oauth2-github": "^3.1"
 	},
 	"repositories": [
 		{

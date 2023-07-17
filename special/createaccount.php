@@ -28,7 +28,7 @@ if (isset($_POST['action'])) {
 	//	$error[] = "Creating multiple accounts (alts) aren't allowed.";
 
 	if ($error == []) {
-		$token = bin2hex(random_bytes(20));
+		$token = bin2hex(random_bytes(32));
 		query("INSERT INTO users (name, password, token, joined) VALUES (?,?,?,?)",
 			[$name, password_hash($pass, PASSWORD_DEFAULT), $token, time()]);
 

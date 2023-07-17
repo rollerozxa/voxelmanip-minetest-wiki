@@ -302,6 +302,35 @@ a.nonexistant {
 .sizediff-net { color: #aaa }
 
 
+
+/// GitHub link button \\\
+
+$gh-btn: #1b1f23;
+.gh-link {
+	background-color: $gh-btn;
+	display: inline-block;
+	color: white;
+	font-size: 14pt;
+	padding: 10px 20px;
+	vertical-align: middle;
+	margin: 20px;
+
+	img {
+		vertical-align: middle;
+		margin-right: 10px;
+	}
+
+	&:hover {
+		background-color: lighten($gh-btn, 5%);
+		text-decoration: none;
+	}
+	&:active {
+		background-color: darken($gh-btn, 5%);
+		color: white;
+	}
+}
+
+
 /// Generic classes \\\
 
 .left	{ text-align: left; }
