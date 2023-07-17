@@ -16,7 +16,7 @@ foreach (glob("lib/*.php") as $file)
 header("Content-Security-Policy:"
 	."default-src 'self';"
 	."script-src 'self';"
-	."img-src 'self' data: *.voxelmanip.se voxelmanip.se *.imgur.com imgur.com *.github.com github.com *.githubusercontent.com;"
+	."img-src 'self' data: *.voxelmanip.se voxelmanip.se *.minetest.net minetest.net *.imgur.com imgur.com *.github.com github.com *.githubusercontent.com;"
 	."media-src 'self';"
 	."style-src 'self' 'unsafe-inline';");
 
@@ -52,9 +52,11 @@ if (isset($_COOKIE['token'])) {
 		$log = true;
 }
 
-if ($log)
+if ($log) {
 	$userdata = fetch("SELECT * FROM users WHERE id = ?", [$id]);
-else
+
+	query("UPDATE users SET lastview = ?, ip = ? WHERE id = ?", [time(), $ipaddr, $userdata['id']]);
+} else
 	$userdata['rank'] = 0;
 
 date_default_timezone_set('Europe/Stockholm');
