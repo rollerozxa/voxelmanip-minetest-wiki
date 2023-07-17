@@ -16,9 +16,7 @@
 {% endblock %}
 
 	{% block content %}
-{% if pagetitle == 'Main Page' %}
-	<h1>{{ config.title }}</h1>
-{% else %}
+{% if pagetitle != 'Main Page' %}
 	<h1>{{ pagetitle }}</h1>
 {% endif %}
 
