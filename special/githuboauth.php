@@ -7,7 +7,12 @@ $provider = new League\OAuth2\Client\Provider\Github([
 ]);
 
 if (!isset($_GET['code'])) {
-	$authUrl = $provider->getAuthorizationUrl();
+	$options = [
+		'state' => 'OPTIONAL_CUSTOM_CONFIGURED_STATE',
+		'scope' => ['user:email']
+	];
+	
+	$authUrl = $provider->getAuthorizationUrl($options);
 	redirect($authUrl);
 } else {
 	$token = $provider->getAccessToken('authorization_code', [
