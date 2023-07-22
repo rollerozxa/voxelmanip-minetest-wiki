@@ -10,7 +10,7 @@ body {
 	background-color: $bg;
 	color: white;
 	font-family: "Roboto", "Arial", sans-serif;
-	font-size: 11.5pt;
+	font-size: 12pt;
 	background: url('/assets/coolgreen2.png');
 }
 
@@ -29,7 +29,7 @@ a {
 	&:active { color: $link_active; }
 }
 
-p {
+p, li {
 	line-height: 1.5;
 }
 
@@ -45,13 +45,25 @@ textarea, input[type=text], input[type=password], input[type=color], .jscolor {
 	padding: 5px;
 }
 
+textarea, .diff td, pre, code {
+	font-family: "Fira Mono", Monaco, Consolas, monospace;
+
+}
+
+textarea.wikiedit {
+	line-height: 1.5;
+	width: 100%;
+	max-width: 1000px;
+	height: 600px;
+	font-size: 11pt;
+}
 
 h1 { margin: 0; font-size: 1.9em; border-bottom: 1px solid #adadad; }
 h2 { font-size: 1.50em; }
-h3 { font-size: 1.17em; }
-h4 { font-size: 1.00em; }
-h5 { font-size: 0.83em; }
-h6 { font-size: 0.67em; }
+h3 { font-size: 1.35em; }
+h4 { font-size: 1.20em; }
+h5 { font-size: 1.00em; }
+h6 { font-size: 0.85em; }
 
 
 .user {
@@ -74,11 +86,17 @@ h6 { font-size: 0.67em; }
 	margin: auto;
 
 	.sidebar {
+		font-size: 11.5pt;
 		padding: 5px;
 		width: 160px;
 		background: rgba(16, 48, 2, 0.65);
 		margin-right: 15px;
 		border: 2px solid $grid;
+
+		.logo {
+			height: 160px;
+			width: 160px;
+		}
 
 		.sidelinks {
 			margin: 0;
@@ -103,6 +121,8 @@ h6 { font-size: 0.67em; }
 		flex: 1;
 
 		.header, .footer {
+			font-size: 11.5pt;
+
 			.actionlinks, .headerlinks {
 				margin: 0;
 				padding: 0;
@@ -175,9 +195,9 @@ h6 { font-size: 0.67em; }
 
 
 // sane styling for wiki pages
-	img {
-		max-width: 100%;
-	}
+img {
+	max-width: 100%;
+}
 
 .thumb {
 	width: 640px;
@@ -263,7 +283,6 @@ h6 { font-size: 0.67em; }
 
 	td {
 		padding: 1px 4px;
-		font-family: Consolas, monospace;
 	}
 
 	ins, del {

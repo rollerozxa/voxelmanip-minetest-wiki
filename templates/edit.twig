@@ -9,7 +9,7 @@
 
 <form method="POST">
 	<p><strong>{{ pagetitle }}</strong></p>
-	<p><textarea name="text" placeholder="Page content" cols="100" rows="20" {% if not log %}disabled{% endif %}>{{ page.content }}</textarea></p>
+	<p><textarea class="wikiedit" name="text" placeholder="Page content" {% if not log %}disabled{% endif %}>{{ page.content }}</textarea></p>
 
 	{% if log %}
 		{% if page.minedit <= userdata.rank %}
