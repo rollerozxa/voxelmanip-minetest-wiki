@@ -18,31 +18,10 @@ if ($action == 'Preview' || $action == 'Show changes') {
 	$description = $_POST['description'];
 }
 
-if ($log && $action == 'Save changes' && $userdata['rank'] >= $pagedata['minedit']) {
+if ($log && $action == 'Save changes' && (!$pagedata || $userdata['rank'] >= $pagedata['minedit'])) {
 	$content = normalise($_POST['text'] ?? '');
 	$description = $_POST['description'] ?? null;
 	$size = strlen($content);
-
-	if ($pagedata) {
-		query("UPDATE wikipages SET cur_revision = cur_revision + 1 WHERE BINARY title = ?",
-			[$page]);
-
-		$newrev = result("SELECT cur_revision FROM wikipages WHERE BINARY title = ?", [$page]);
-		$oldsize = result("SELECT size FROM wikirevisions WHERE BINARY page = ? AND revision = ?", [$page, $newrev-1]);
-
-		query("INSERT INTO wikirevisions (page, revision, author, time, size, sizediff, description, content) VALUES (?,?,?,?,?,?,?,?)",
-			[$page, $newrev, $userdata['id'], time(), $size, ($size - $oldsize), $description, $content]);
-	} else {
-		$cache->delete('wpe_'.base64_encode($page));
-
-		query("INSERT INTO wikipages (title) VALUES (?)",
-			[$page]);
-
-		$newrev = 1;
-
-		query("INSERT INTO wikirevisions (page, author, time, size, description, content) VALUES (?,?,?,?,?,?)",
-			[$page, $userdata['id'], time(), $size, $description, $content]);
-	}
 
 	$minedit = $_POST['minedit'] ?? null;
 	if ($userdata['rank'] > 2 && $minedit) {
@@ -50,14 +29,41 @@ if ($log && $action == 'Save changes' && $userdata['rank'] >= $pagedata['minedit
 			[$minedit, $page]);
 	}
 
-	wikiEditHook([
-		'page' => $page,
-		'page_slugified' => $page_slugified,
-		'description' => $description,
-		'revision' => $newrev,
-		'u_id' => $userdata['id'],
-		'u_name' => $userdata['name']
-	]);
+	$actuallysubmit = !($content == $pagedata['content'] || $content == '');
+
+	trigger_error("lol", E_USER_NOTICE);
+
+	if ($actuallysubmit) {
+		if ($pagedata) {
+			query("UPDATE wikipages SET cur_revision = cur_revision + 1 WHERE BINARY title = ?",
+				[$page]);
+
+			$newrev = result("SELECT cur_revision FROM wikipages WHERE BINARY title = ?", [$page]);
+			$oldsize = result("SELECT size FROM wikirevisions WHERE BINARY page = ? AND revision = ?", [$page, $newrev-1]);
+
+			query("INSERT INTO wikirevisions (page, revision, author, time, size, sizediff, description, content) VALUES (?,?,?,?,?,?,?,?)",
+				[$page, $newrev, $userdata['id'], time(), $size, ($size - $oldsize), $description, $content]);
+		} else {
+			$cache->delete('wpe_'.base64_encode($page));
+
+			query("INSERT INTO wikipages (title) VALUES (?)",
+				[$page]);
+
+			$newrev = 1;
+
+			query("INSERT INTO wikirevisions (page, author, time, size, description, content) VALUES (?,?,?,?,?,?)",
+				[$page, $userdata['id'], time(), $size, $description, $content]);
+		}
+
+		wikiEditHook([
+			'page' => $page,
+			'page_slugified' => $page_slugified,
+			'description' => $description,
+			'revision' => $newrev,
+			'u_id' => $userdata['id'],
+			'u_name' => $userdata['name']
+		]);
+	}
 
 	redirect("/wiki/$page_slugified");
 }
