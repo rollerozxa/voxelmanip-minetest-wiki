@@ -58,12 +58,32 @@ textarea.wikiedit {
 	font-size: 11pt;
 }
 
-h1 { margin: 0; font-size: 1.9em; border-bottom: 1px solid #adadad; }
+h1 { margin: 0; font-size: 1.9em; }
 h2 { font-size: 1.50em; }
 h3 { font-size: 1.35em; }
 h4 { font-size: 1.20em; }
 h5 { font-size: 1.00em; }
 h6 { font-size: 0.85em; }
+
+h1,h2,h3,h4 {
+	border-bottom: 1px solid #adadad;
+}
+
+h2,h3,h4 {
+	margin-bottom: 0;
+}
+
+
+table {
+	border: $grid 2px solid;
+	border-spacing: 0px;
+	border-collapse: collapse;
+
+	td,th {
+		border-bottom: $grid 1px solid;
+		padding: 5px;
+	}
+}
 
 
 .user {
@@ -170,7 +190,7 @@ h6 { font-size: 0.85em; }
 		}
 
 		.content {
-			background: rgba(8, 8, 8, 0.75);
+			background: rgba(7, 7, 7, 0.85);
 			padding: 10px;
 			border: 2px solid $grid;
 			overflow: auto;
@@ -358,10 +378,6 @@ $gh-btn: #1b1f23;
 
 .clear_right { clear: right; }
 .float-right { float: right; }
-
-.noborder { border: 0; }
-
-.text-for-ants { font-size: 8pt; }
 
 .error {
 	color: red;

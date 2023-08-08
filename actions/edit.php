@@ -31,8 +31,6 @@ if ($log && $action == 'Save changes' && (!$pagedata || $userdata['rank'] >= $pa
 
 	$actuallysubmit = !($content == $pagedata['content'] || $content == '');
 
-	trigger_error("lol", E_USER_NOTICE);
-
 	if ($actuallysubmit) {
 		if ($pagedata) {
 			query("UPDATE wikipages SET cur_revision = cur_revision + 1 WHERE BINARY title = ?",
