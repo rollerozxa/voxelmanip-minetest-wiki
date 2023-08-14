@@ -2,7 +2,7 @@
 
 {% set title = "Edit article" %}
 {% set noindex = true %}
-{% set pagename = "/wiki/" ~ pagetitle_slugified ~ "?action=edit" %}
+{% set pagename = "/" ~ pagetitle_slugified ~ "?action=edit" %}
 
 	{% block content %}
 <h1>Edit article</h1>
@@ -34,7 +34,7 @@
 				</p>
 			{% endif %}
 
-			<p>By submitting changes you agree to license them under the CC-BY-SA 4.0 license. <a href="/wiki/Copyright">Read more</a></p>
+			<p>By submitting changes you agree to license them under the CC-BY-SA 4.0 license. <a href="/Copyright">Read more</a></p>
 		{% else %}
 			{% if userdata.rank > 0 %}
 				<p>This page is locked and cannot be edited by unprivileged users.</p>
@@ -43,7 +43,7 @@
 			{% endif %}
 		{% endif %}
 	{% else %}
-		<p>Please <a href="/wiki/Special:Login">log in</a> to make edits to this page.</p>
+		<p>Please <a href="/Special:Login">log in</a> to make edits to this page.</p>
 	{% endif %}
 </form>
 

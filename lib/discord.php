@@ -38,13 +38,13 @@ function wikiEditHook($data) {
 
 	if ($data['revision'] > 1) {
 		$moreinfo = sprintf(
-			"([diff](<%s/wiki/%s?action=diff&prev=%s&next=%s>))",
+			"([diff](<%s/%s?action=diff&prev=%s&next=%s>))",
 		$domain, $data['page_slugified'], $data['revision']-1, $data['revision']);
 	} else
 		$moreinfo = "*(New)*";
 
 	$msg = sprintf(
-		"**[%s](<%s/user/%s>)** edited [%s](<%s/wiki/%s>) %s %s",
+		"**[%s](<%s/user/%s>)** edited [%s](<%s/%s>) %s %s",
 	$data['u_name'], $domain, $data['u_id'],
 	$data['page'], $domain, $data['page_slugified'],
 	$moreinfo, $desc);

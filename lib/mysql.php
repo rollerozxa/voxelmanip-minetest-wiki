@@ -43,19 +43,25 @@ function insertId() {
 }
 
 /**
- * Helper function to construct part of a query to set a lot of fields in one row
+ * Helper function to insert a row into a table.
  */
-function updateRowQuery($fields) {
-	// Temp variables for dynamic query construction.
-	$fieldquery = '';
+function insertInto($table, $data, $dry = false) {
+	$fields = [];
 	$placeholders = [];
+	$values = [];
 
-	// Construct a query containing all fields.
-	foreach ($fields as $fieldk => $fieldv) {
-		if ($fieldquery) $fieldquery .= ',';
-		$fieldquery .= $fieldk.'=?';
-		$placeholders[] = $fieldv;
+	foreach ($data as $field => $value) {
+		$fields[] = $field;
+		$placeholders[] = '?';
+		$values[] = $value;
 	}
 
-	return ['fieldquery' => $fieldquery, 'placeholders' => $placeholders];
+	$query = sprintf(
+		"INSERT INTO %s (%s) VALUES (%s)",
+	$table, commasep($fields), commasep($placeholders));
+
+	if ($dry)
+		return $query;
+	else
+		return query($query, $values);
 }

@@ -2,7 +2,7 @@
 
 {% set title = "Wanted pages" %}
 {% set noindex = true %}
-{% set pagename = "/wiki/Special:WantedPages" %}
+{% set pagename = "/Special:WantedPages" %}
 
 	{% block content %}
 <h1>Wanted pages</h1>
@@ -11,7 +11,7 @@
 
 <ol>
 {% for page, count in wantedpages %}
-	<li><a class="nonexistant" href="/wiki/{{ page | replace({" ":"_"}) }}">{{ page }}</a> ({{ count }})</li>
+	<li><a class="nonexistant" href="/{{ page | replace({" ":"_"}) }}">{{ page }}</a> ({{ count }})</li>
 {% endfor %}
 </ol>
 

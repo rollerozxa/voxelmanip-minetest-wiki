@@ -2,7 +2,7 @@
 
 {% set title = "Orphaned pages" %}
 {% set noindex = true %}
-{% set pagename = "/wiki/Special:OrphanedPages" %}
+{% set pagename = "/Special:OrphanedPages" %}
 
 	{% block content %}
 <h1>Orphaned pages</h1>
@@ -11,7 +11,7 @@
 
 <ol>
 {% for page in orphanedpages %}
-	<li><a href="/wiki/{{ page | replace({" ":"_"}) }}">{{ page }}</a></li>
+	<li><a href="/{{ page | replace({" ":"_"}) }}">{{ page }}</a></li>
 {% endfor %}
 </ol>
 

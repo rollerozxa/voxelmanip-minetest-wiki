@@ -1,12 +1,17 @@
 <?php
 require('lib/common.php');
 
-if ($uri == '/' && !isCli()) redirect('/wiki/');
+if (str_starts_with($uri, '/wiki/')) {
+	header("Location: ".substr($uri, 5), true, 301);
+	die();
+}
 
-if (!isset($_GET['page']) || !$_GET['page']) $_GET['page'] = 'Main_Page';
+$path = urldecode(parse_url($_SERVER["REQUEST_URI"], PHP_URL_PATH));
 
-$page = (isset($_GET['page']) ? str_replace('_', ' ', $_GET['page']) : 'Main Page');
-$page_slugified = (isset($_GET['page']) ? $_GET['page'] : 'Main_Page');
+if ($path != '/') $p = substr($path, 1);
+
+$page = (isset($p) ? str_replace('_', ' ', $p) : 'Main Page');
+$page_slugified = (isset($p) ? $p : 'Main_Page');
 $revision = $_GET['rev'] ?? null;
 
 if (isset($_GET['action'])) {

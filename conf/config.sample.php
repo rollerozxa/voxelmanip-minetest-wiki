@@ -7,10 +7,6 @@ $pass = '';
 $tplCache = 'templates/cache';
 $tplNoCache = false; // **DO NOT SET AS TRUE IN PROD - DEV ONLY**
 
-// Array of memcached server(s) for memcache caching. Leave empty to disable memcache caching.
-$memcachedServers = [];
-$memcachedPrefix = '';
-
 // Customise your wiki
 $config['title'] = "Wiki";
 $config['description'] = "A very cool wiki.";

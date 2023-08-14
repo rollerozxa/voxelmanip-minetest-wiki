@@ -10,7 +10,7 @@
 {% if revision %}
 	{% set noindex = true %}
 {% endif %}
-{% set pagename = '/wiki/' ~ pagetitle_slugified %}
+{% set pagename = '/' ~ pagetitle_slugified %}
 
 {% block footer %}
 	{% if page.content %}
@@ -26,7 +26,7 @@
 {% if page.content %}
 	{% if revision %}
 		<p><em>Old revision #{{ revision }} from {{ page.time | date('Y-m-d H:m') }} by {{ userlink(page, 'u_') }}.</em>
-			(<a href="/wiki/{{ pagetitle_slugified }}">Go to current revision</a>)</p>
+			(<a href="/{{ pagetitle_slugified }}">Go to current revision</a>)</p>
 	{% endif %}
 
 	{{ page.content | markdown_wiki }}

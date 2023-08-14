@@ -2,7 +2,7 @@
 
 {% set title = "Long pages" %}
 {% set noindex = true %}
-{% set pagename = "/wiki/Special:LongPages" %}
+{% set pagename = "/Special:LongPages" %}
 
 	{% block content %}
 <h1>Long pages</h1>
@@ -11,7 +11,7 @@
 
 <ol>
 {% for page in longpages %}
-	<li><a href="/wiki/{{ page.title | replace({" ":"_"}) }}">{{ page.title }}</a> [{{ page.size | number_format(0, '', ' ') }} bytes]</li>
+	<li><a href="/{{ page.title | replace({" ":"_"}) }}">{{ page.title }}</a> [{{ page.size | number_format(0, '', ' ') }} bytes]</li>
 {% endfor %}
 </ol>
 

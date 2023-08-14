@@ -1,18 +1,15 @@
 ## User-generated files
 conf/config.php
 templates/cache/
-userpic/
 
 ## SCSS caches
-assets/css/
-assets/scss/.sass-cache
+static/css/
+scss/.sass-cache
 
 ## Composer
 vendor/
 composer.lock
 
 ## misc.
-templates/_template.twig
 .vscode/
 misc/
-adminer/

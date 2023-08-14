@@ -1,9 +1,9 @@
 {% extends "_layout.twig" %}
-{% from 'components/macros.twig' import wikilinks, sizediff %}
+{% from 'components/macros.twig' import sizediff %}
 
 {% set title = "Recent Changes" %}
 {% set noindex = true %}
-{% set pagename = "/wiki/Special:RecentChanges" %}
+{% set pagename = "/Special:RecentChanges" %}
 
 	{% block content %}
 <h1>{{ title }}</h1>
@@ -20,9 +20,9 @@
 	{% endif %}
 	<li>
 		{{ rev.time | date('H:i') }}
-		&nbsp;<a href="/wiki/{{ rev.page | replace({' ': '_'}) }}">{{ rev.page }}</a>
-			({% if rev.revision == 1 %}diff{% else %}<a href="/wiki/{{ rev.page | replace({' ': '_'}) }}?action=diff&prev={{ rev.revision - 1 }}&next={{ rev.revision }}" rel="nofollow">diff</a>{% endif %}
-				| <a href="/wiki/{{ rev.page | replace({' ': '_'}) }}?action=history" rel="nofollow">hist</a>)
+		&nbsp;<a href="/{{ rev.page | replace({' ': '_'}) }}">{{ rev.page }}</a>
+			({% if rev.revision == 1 %}diff{% else %}<a href="/{{ rev.page | replace({' ': '_'}) }}?action=diff&prev={{ rev.revision - 1 }}&next={{ rev.revision }}" rel="nofollow">diff</a>{% endif %}
+				| <a href="/{{ rev.page | replace({' ': '_'}) }}?action=history" rel="nofollow">hist</a>)
 		{% if rev.revision != 1 %}
 			{{ sizediff(rev.sizediff) }}
 		{% else %}

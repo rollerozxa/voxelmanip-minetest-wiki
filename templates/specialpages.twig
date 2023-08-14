@@ -1,14 +1,14 @@
 {% extends "_layout.twig" %}
 
 {% set title = "Special pages" %}
-{% set pagename = "/wiki/Special:SpecialPages" %}
+{% set pagename = "/Special:SpecialPages" %}
 
 	{% block content %}
 <h1>Special pages</h1>
 
 <ul>
 	{% for name, title in specialpages %}
-		<li><a href="/wiki/Special:{{ name }}">{{ title }}</a></li>
+		<li><a href="/Special:{{ name }}">{{ title }}</a></li>
 	{% endfor %}
 </ul>
 

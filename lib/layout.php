@@ -30,7 +30,6 @@ function twigloader($subfolder = '', $customloader = null, $customenv = null) {
 	$twig->addGlobal('domain', $domain);
 	$twig->addGlobal('uri', $uri);
 	$twig->addGlobal('pagename', substr($_SERVER['PHP_SELF'], 0, -4));
-	$twig->addGlobal('wiki', true);
 	$twig->addGlobal('config', $config);
 	$twig->addGlobal('page_slugified', $page_slugified);
 	$twig->addGlobal('type', $type);
@@ -40,22 +39,32 @@ function twigloader($subfolder = '', $customloader = null, $customenv = null) {
 	return $twig;
 }
 
+class WikiExtension extends \Twig\Extension\AbstractExtension {
+	public function getFunctions() {
+		global $profiler;
+
+		return [
+			new \Twig\TwigFunction('userlink', 'userlink', ['is_safe' => ['html']]),
+			new \Twig\TwigFunction('profiler_stats', function () use ($profiler) {
+				$profiler->getStats();
+			})
+		];
+	}
+	public function getFilters() {
+		return [
+
+			// Markdown function for wiki, sanitized and using the ToC extension.
+			new \Twig\TwigFilter('markdown_wiki', 'parsing', ['is_safe' => ['html']]),
+
+			new \Twig\TwigFilter('number_format', 'number_format')
+
+		];
+	}
+}
+
 function error($title, $message) {
 	echo twigloader()->render('_error.twig', ['err_title' => $title, 'err_message' => $message]);
 	die();
-}
-
-function relativeTime($time) {
-	if (!$time) return 'never';
-
-	$relativeTime = new \RelativeTime\RelativeTime([
-		'language' => '\RelativeTime\Languages\English',
-		'separator' => ', ',
-		'suffix' => true,
-		'truncate' => 1,
-	]);
-
-	return $relativeTime->timeAgo($time);
 }
 
 function redirect($url) {

@@ -21,8 +21,6 @@ foreach ($data as $pagename => $content) {
 	query("INSERT INTO wikirevisions (page, author, time, size, description, content) VALUES (?,?,?,?,?,?)",
 		[$pagename, 1, time(), $size, 'Automatic import from script', $content]);
 
-	$cache->delete('wpe_'.base64_encode($pagename));
-
 	$stats['size'] += $size;
 	$stats['pages']++;
 }

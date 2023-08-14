@@ -11,7 +11,7 @@ if (!isset($_GET['code'])) {
 		'state' => 'OPTIONAL_CUSTOM_CONFIGURED_STATE',
 		'scope' => ['user:email']
 	];
-	
+
 	$authUrl = $provider->getAuthorizationUrl($options);
 	redirect($authUrl);
 } else {
@@ -39,16 +39,16 @@ if (!isset($_GET['code'])) {
 		$token = result("SELECT token FROM users WHERE github_id = ?", [$id]);
 
 		if (!$token) {
-
 			// No account, register one
 			$token = bin2hex(random_bytes(32));
+
 			query("INSERT INTO users (name, displayname, email, token, github_id, github_token, joined) VALUES (?,?,?,?,?,?,?)",
 				[$username, $dispname, $email, $token, $id, $ghtoken, time()]);
 		}
 
 		setcookie('token', $token, 2147483647, '/');
 
-		redirect('/wiki/');
+		redirect('/');
 
 	} catch (Exception $e) {
 		die("Something went wrong while requesting GitHub's API");

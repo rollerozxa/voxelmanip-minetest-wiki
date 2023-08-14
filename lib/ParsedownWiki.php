@@ -31,7 +31,7 @@ class ParsedownWiki extends \Parsedown {
 					'text' => $matches[1],
 					'attributes' => [
 						'class' => $customClass,
-						'href' => '/wiki/'.str_replace(' ', '_', $matches[1])
+						'href' => '/'.str_replace(' ', '_', $matches[1])
 					]
 				],
 			];
