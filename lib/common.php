@@ -1,7 +1,6 @@
 <?php
-if (!file_exists('conf/config.php')) {
+if (!file_exists('conf/config.php'))
 	die('Please read the installing instructions in the README file.');
-}
 
 // load profiler first
 require_once('lib/profiler.php');

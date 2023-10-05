@@ -1,11 +1,10 @@
 <?php
-$host = '127.0.0.1';
-$db   = 'wiki';
-$user = '';
-$pass = '';
+define('DB_HOST', 'localhost');
+define('DB_NAME', 'wiki_vm');
+define('DB_USER', '');
+define('DB_PASS', '');
 
-$tplCache = 'templates/cache';
-$tplNoCache = false; // **DO NOT SET AS TRUE IN PROD - DEV ONLY**
+define('TPL_CACHE', '/tmp/wiki_vm/');
 
 // Customise your wiki
 $config['title'] = "Wiki";

@@ -6,7 +6,7 @@ $options = [
 	PDO::ATTR_EMULATE_PREPARES		=> false,
 ];
 try {
-	$sql = new PDO("mysql:host=$host;dbname=$db;charset=utf8mb4", $user, $pass, $options);
+	$sql = new PDO("mysql:host=".DB_HOST.";dbname=".DB_NAME.";charset=utf8mb4", DB_USER, DB_PASS, $options);
 } catch (\PDOException $e) {
 	die("Error - Can't connect to database. Please try again later.");
 }
@@ -58,7 +58,7 @@ function insertInto($table, $data, $dry = false) {
 
 	$query = sprintf(
 		"INSERT INTO %s (%s) VALUES (%s)",
-	$table, commasep($fields), commasep($placeholders));
+	$table, implode(',', $fields), implode(',', $placeholders));
 
 	if ($dry)
 		return $query;

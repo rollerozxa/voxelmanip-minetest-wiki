@@ -6,24 +6,15 @@
  * @param string $subfolder Subdirectory to use in the templates/ directory.
  * @return \Twig\Environment Twig object.
  */
-function twigloader($subfolder = '', $customloader = null, $customenv = null) {
-	global $tplCache, $tplNoCache, $userdata, $log, $domain, $uri, $config, $page_slugified, $type;
+function twigloader() {
+	global $userdata, $log, $domain, $uri, $config, $page_slugified, $type;
 
-	$doCache = ($tplNoCache ? false : $tplCache);
+	$loader = new \Twig\Loader\FilesystemLoader('templates/');
 
-	if (!isset($customloader)) {
-		$loader = new \Twig\Loader\FilesystemLoader('templates/' . $subfolder);
-	} else {
-		$loader = $customloader();
-	}
-
-	if (!isset($customenv)) {
-		$twig = new \Twig\Environment($loader, [
-			'cache' => $doCache,
-		]);
-	} else {
-		$twig = $customenv($loader, $doCache);
-	}
+	$twig = new \Twig\Environment($loader, [
+		'cache' => TPL_CACHE,
+		'auto_reload' => true,
+	]);
 
 	$twig->addGlobal('userdata', $userdata);
 	$twig->addGlobal('log', $log);

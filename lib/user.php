@@ -32,9 +32,8 @@ function userfields() {
 	$fields = ['id', 'name'];
 
 	$out = '';
-	foreach ($fields as $field) {
+	foreach ($fields as $field)
 		$out .= sprintf('u.%s u_%s,', $field, $field);
-	}
 
 	return $out;
 }
