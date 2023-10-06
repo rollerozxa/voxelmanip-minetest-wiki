@@ -4,17 +4,14 @@
 	{% set title = pagetitle %}
 	{% set description = page.content | split('\n')[0] %}
 {% else %}
-	{% set description = config.description %}
+	{% set description = "The Voxelmanip Minetest Wiki..." %}
 {% endif %}
 
-{% if revision %}
-	{% set noindex = true %}
-{% endif %}
 {% set pagename = '/' ~ pagetitle_slugified %}
 
 {% block footer %}
-	{% if page.content %}
-		This page was last modified on {{ page.time | date('Y-m-d H:m') }} by {{ page.u_name }}
+	{% if pagecontent %}
+		<a href="{{ constant('GIT_REPO') }}/blob/master/pages/{{ pagetitle_slugified }}.md">View page on GitHub</a>
 	{% endif %}
 {% endblock %}
 
@@ -23,15 +20,9 @@
 	<h1>{{ pagetitle }}</h1>
 {% endif %}
 
-{% if page.content %}
-	{% if revision %}
-		<p><em>Old revision #{{ revision }} from {{ page.time | date('Y-m-d H:m') }} by {{ userlink(page, 'u_') }}.</em>
-			(<a href="/{{ pagetitle_slugified }}">Go to current revision</a>)</p>
-	{% endif %}
-
-	{{ page.content | markdown_wiki }}
+{% if pagecontent %}
+	{{ pagecontent | markdown_wiki }}
 {% else %}
-	<p>This page does not exist. Would you like to create it?</p>
+	<p>A wiki page with this name does not exist.</p>
 {% endif %}
-
 	{% endblock %}

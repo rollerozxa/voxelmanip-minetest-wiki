@@ -1,15 +1,6 @@
-## User-generated files
-conf/config.php
-templates/cache/
-
-## SCSS caches
 static/css/
-scss/.sass-cache
-
-## Composer
 vendor/
 composer.lock
-
-## misc.
 .vscode/
 misc/
+data/
