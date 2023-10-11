@@ -2,7 +2,7 @@
 
 {% if pagetitle != 'Main Page' %}
 	{% set title = pagetitle %}
-	{% set description = page.content | split('\n')[0] %}
+	{% set description = pagecontent | split('\n')[0] %}
 {% else %}
 	{% set description = "The Voxelmanip Minetest Wiki..." %}
 {% endif %}

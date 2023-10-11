@@ -32,5 +32,5 @@ else
 twigloader()->display('index.twig', [
 	'pagetitle' => $page,
 	'pagetitle_slugified' => str_replace(' ', '_', $page),
-	'pagecontent' => $pagecontent,
+	'pagecontent' => $pagecontent ?? null,
 ]);
