@@ -4,15 +4,15 @@ require('lib/common.php');
 if (str_starts_with(URI, '/wiki/'))
 	redirectPerma("%s", substr(URI, 5));
 
-if (isset($_GET['rev']) || isset($_GET['action']))
-	redirectPerma('/%s', $page_slugified);
-
 $path = urldecode(parse_url($_SERVER["REQUEST_URI"], PHP_URL_PATH));
 
 if ($path != '/') $p = substr($path, 1);
 
 $page = (isset($p) ? str_replace('_', ' ', $p) : 'Main Page');
 $page_slugified = (isset($p) ? $p : 'Main_Page');
+
+if (isset($_GET['rev']) || isset($_GET['action']))
+	redirectPerma('/%s', $page_slugified);
 
 if (str_starts_with($page, 'Special:')) {
 	$specialpage = strtolower(substr($page, 8));
