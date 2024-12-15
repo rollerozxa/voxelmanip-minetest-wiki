@@ -29,6 +29,10 @@ if (file_exists($filename))
 else
 	http_response_code(404);
 
+if (isset($pageRedirects[$page_slugified]) && $pageRedirects[$page_slugified] != '') {
+	redirect('%s', $pageRedirects[$page_slugified]);
+}
+
 twigloader()->display('index.twig', [
 	'pagetitle' => $page,
 	'pagetitle_slugified' => str_replace(' ', '_', $page),
