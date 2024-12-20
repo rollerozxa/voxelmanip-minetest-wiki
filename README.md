@@ -1,7 +1,7 @@
 # wikiozxa (Voxelmanip Wiki)
-The version of Wikiozxa that's powering The Minetest Voxelmanip Wiki.
+The version of Wikiozxa that used to power The Minetest Voxelmanip Wiki.
 
-The content for the Wiki is stored in a Git repository where edits and contributions are done now, available [here](https://github.com/rollerozxa/voxelmanip-wiki).
+Compared to original wikiozxa, pages are stored in the filesystem which can be put into a Git repository to allow editing and contributing from a Git forge.
 
 ## Set-up notes
 Requires some environment with PHP available, install Composer dependencies, compile SCSS stylesheets, import the database dump, all of that stuff...
